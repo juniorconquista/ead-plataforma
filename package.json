@@ -3,9 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rematch/core": "^1.0.6",
+    "@rematch/loading": "^1.1.2",
+    "@rematch/persist": "^1.1.5",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "formik": "^1.4.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-redux": "^6.0.0",
+    "react-scripts": "2.1.8",
+    "react-spring": "^8.0.10",
+    "react-toastify": "^4.4.3",
+    "redux-persist": "^5.10.0",
+    "yup": "^0.26.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -13,8 +24,21 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "lint-staged": {
+    "*.{js,jsx,json,css,scss,md,ts,tsx,graphql,prettierrc,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}"
+    ]
   },
   "browserslist": [
     ">0.2%",

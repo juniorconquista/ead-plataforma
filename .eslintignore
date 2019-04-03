@@ -1,0 +1,13 @@
+coverage
+build
+__tests__
+.storybook
+.env
+scripts/
+config/
+src/containers/**/Store/
+src/setupTests.js
+src/registerServiceWorker.js
+src/stories
+Dockerfile
+docker-entrypoint.sh
