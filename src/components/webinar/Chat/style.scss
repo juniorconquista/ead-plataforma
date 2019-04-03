@@ -1,0 +1,7 @@
+.chat__content {
+    height: calc(50vh - 122px);
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+}

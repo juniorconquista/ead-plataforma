@@ -1,4 +1,4 @@
-import * as repository from './repository';
+// import * as repository from './repository';
 
 export const auth = {
     state: {},
@@ -16,12 +16,17 @@ export const auth = {
     effects: dispatch => ({
         async loginAsync(payload) {
             try {
-                const response = await repository.login(payload);
+                // const response = await repository.login(payload);
                 sessionStorage.setItem(
                     'accessToken',
-                    response.data.accessToken,
+                    'access-token',
+                    // response.data.accessToken,
                 );
-                return dispatch.auth.login(response.data);
+                // return dispatch.auth.login(response.data);
+                return dispatch.auth.login({
+                    accessToken: 'access-token',
+                    id: 2,
+                });
             } catch (e) {
                 throw e;
             }
