@@ -1,7 +1,10 @@
 .chat__content {
-    height: calc(50vh - 122px);
-    overflow: auto;
-    display: flex;
-    flex-direction: column-reverse;
-    position: relative;
+    .chat__messages {
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+        height: calc(50vh - 192px);
+        overflow: auto;
+        padding: 10px;
+    }
 }

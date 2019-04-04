@@ -1,9 +1,29 @@
+@import '../../../../assets/style/variables.scss';
+
 .chat__content {
     .chat__message {
         display: flex;
         align-items: center;
         margin-bottom: 20px;
         justify-content: flex-start;
+        .info-message {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            .sender,
+            .date {
+                text-transform: capitalize;
+                margin-bottom: 5px;
+                font-size: 12px;
+                letter-spacing: 1px;
+                color: $gray-03;
+            }
+            .date {
+                color: $gray-02;
+                font-size: 11px;
+            }
+        }
         .message {
             margin: 0px 15px;
             max-width: 71%;
@@ -38,5 +58,8 @@
     }
     .chat__message.you {
         justify-content: flex-end;
+        .info-message {
+            justify-content: flex-end;
+        }
     }
 }

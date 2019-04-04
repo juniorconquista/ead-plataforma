@@ -1,0 +1,90 @@
+@import '../../../../assets/style/variables.scss';
+
+.chat__content {
+    .input-group {
+        display: flex;
+        height: 40px;
+        margin-bottom: 30px;
+        .btn__send-message {
+            width: 40px;
+            border: 0.5px solid $gray-02;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            align-content: center;
+            transition: all 0.3s ease-in-out 0s;
+            &:first-child {
+                border-radius: 20px 0px 0px 20px;
+                border-right: none;
+            }
+            &:last-child {
+                border-radius: 0px 20px 20px 0px;
+                border-left: none;
+            }
+            svg {
+                height: 18px;
+                path {
+                    fill: #263238 !important;
+                    transition: all 0.3s ease-in-out 0s;
+                }
+            }
+        }
+        .input__send-message {
+            flex: 1;
+            border: 0.5px solid $gray-02;
+            border-left: none;
+            border-right: none;
+            letter-spacing: 1px;
+            font-size: 14px;
+            color: $gray-02;
+            transition: all 0.3s ease-in-out 0s;
+            &::placeholder {
+                color: $gray-02;
+                letter-spacing: 1px;
+                font-size: 14px;
+                transition: all 0.3s ease-in-out 0s;
+            }
+        }
+        .emoji-mart {
+            position: absolute;
+            bottom: 42px;
+            .emoji-mart-scroll {
+                border-bottom: 0;
+                margin-bottom: 6px;
+            }
+            .emoji-mart-scroll + .emoji-mart-bar {
+                display: none;
+            }
+        }
+        .overlay {
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            width: 100%;
+            background-color: transparent;
+            padding: 0;
+        }
+    }
+    .is-invalid {
+        .btn__send-message {
+            border: 0.5px solid #fb7171;
+            svg {
+                height: 18px;
+                path {
+                    fill: #fb7171 !important;
+                }
+            }
+        }
+        .input__send-message {
+            border: 0.5px solid #fb7171;
+            border-left: none;
+            border-right: none;
+            &::placeholder {
+                color: #fb7171;
+            }
+        }
+    }
+}

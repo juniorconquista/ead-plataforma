@@ -24,7 +24,7 @@ const PrivateRouter = ({ component, ...rest }) => {
 };
 
 PrivateRouter.propTypes = {
-    component: PropTypes.node.isRequired,
+    component: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

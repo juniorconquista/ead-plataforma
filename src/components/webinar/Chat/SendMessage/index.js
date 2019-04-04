@@ -1,25 +1,39 @@
 import React, { memo } from 'react';
-import InputSendMessage from '../../../shared/InputSendMessage';
+import InputSendMessage from '../InputSendMessage';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
-import './style.scss';
+const chatSchema = Yup.object().shape({
+    message: Yup.string().required(),
+});
 
-const Message = props => {
-    const { message, userId } = props;
+const Message = () => {
     return (
         <div className="chat-page__send-message">
             <div className="send-messages">
-                <form>
-                    <InputSendMessage
-                        placeholder="Enviar Mensagem"
-                        // handleChange={this.handleChange}
-                        // handleSelectedEmoji={this.handleSelectedEmoji}
-                        // handleEmoji={this.handleEmoji}
-                        value={message}
-                        isInvalid={isInvalid}
-                        toggleEmoji={toggleEmoji}
-                        emojiPicker
-                    />
-                </form>
+                <Formik
+                    initialValues={{ message: '' }}
+                    validationSchema={chatSchema}
+                    onSubmit={values => console.log(values)}
+                >
+                    {({ errors, values, setFieldValue }) => (
+                        <Form>
+                            <Field
+                                type="text"
+                                name="message"
+                                placeholder="Digite sua mensagem"
+                                render={({ field }) => (
+                                    <InputSendMessage
+                                        field={field}
+                                        errors={errors}
+                                        setFieldValue={setFieldValue}
+                                        values={values}
+                                    />
+                                )}
+                            />
+                        </Form>
+                    )}
+                </Formik>
             </div>
         </div>
     );

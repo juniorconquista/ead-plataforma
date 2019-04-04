@@ -12,6 +12,12 @@ const Message = props => {
                 you: userId === message.idSender,
             })}
         >
+            {userId !== message.idSender && (
+                <div className="info-message">
+                    <div className="sender">{message.sender}</div>
+                    <div className="date">{message.date}</div>
+                </div>
+            )}
             <div
                 className={classnames({
                     message: true,
@@ -20,6 +26,12 @@ const Message = props => {
             >
                 {message.text}
             </div>
+            {userId === message.idSender && (
+                <div className="info-message">
+                    <div className="sender">{message.sender}</div>
+                    <div className="date">{message.date}</div>
+                </div>
+            )}
         </div>
     );
 };

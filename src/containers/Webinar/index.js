@@ -8,23 +8,26 @@ import './style.scss';
 
 const messages = [
     {
-        id: 1,
+        id: 3,
         sender: 'conquista',
+        date: '01/02/2019',
         idSender: 1,
-        text: 'Oi tudo bem ?',
+        text:
+            'Minha duvida é a respeito da forma como é feito este webinar, pode me ajudar ?',
     },
     {
         id: 2,
         sender: 'admin',
+        date: '01/02/2019',
         idSender: 2,
         text: 'Tudo. Qual sua duvida ?',
     },
     {
-        id: 3,
+        id: 1,
         sender: 'conquista',
+        date: '01/02/2019',
         idSender: 1,
-        text:
-            'Minha duvida é a respeito da forma como é feito este webinar, pode me ajudar ?',
+        text: 'Oi tudo bem ?',
     },
 ];
 
