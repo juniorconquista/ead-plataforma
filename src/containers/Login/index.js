@@ -14,7 +14,7 @@ const SignupSchema = Yup.object().shape({
     email: Yup.string()
         .email('E-MAIL inválido')
         .required('Favor informar o seu E-MAIL'),
-    senha: Yup.string().required('Favor informar a sua SENHA'),
+    password: Yup.string().required('Favor informar a sua SENHA'),
 });
 
 const Login = memo(props => {
@@ -26,7 +26,7 @@ const Login = memo(props => {
                     <img src={Education} alt="education" />
                 </div>
                 <Formik
-                    initialValues={{ email: '', senha: '' }}
+                    initialValues={{ email: '', password: '' }}
                     validationSchema={SignupSchema}
                     onSubmit={values =>
                         login(values).then(() => {
@@ -58,7 +58,7 @@ const Login = memo(props => {
                             ) : null}
                             <Field
                                 type="text"
-                                name="senha"
+                                name="password"
                                 render={({ field }) => (
                                     <TextField
                                         autoComplete="current-password"
