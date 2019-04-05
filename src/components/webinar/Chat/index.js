@@ -6,19 +6,30 @@ import SendMessage from './SendMessage';
 import './style.scss';
 
 const Chat = () => {
-    const { messages, userId } = useContext(WebinarContentContext);
+    const { sendMessage, messages, userId, name } = useContext(
+        WebinarContentContext,
+    );
     return (
         <div className="chat__content">
             <div className="chat__messages">
-                {messages.map(message => (
-                    <Message
-                        key={message.id}
-                        message={message}
-                        userId={userId}
-                    />
-                ))}
+                {messages
+                    .map(
+                        message =>
+                            message && (
+                                <Message
+                                    key={message._id}
+                                    message={message}
+                                    userId={userId}
+                                />
+                            ),
+                    )
+                    .reverse()}
             </div>
-            <SendMessage />
+            <SendMessage
+                sendMessage={sendMessage}
+                name={name}
+                userId={userId}
+            />
         </div>
     );
 };

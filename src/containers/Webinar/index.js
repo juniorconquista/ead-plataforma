@@ -1,48 +1,47 @@
-import React, { memo } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { memo, useEffect } from 'react';
+import { compose } from 'recompose';
 import { connect } from 'react-redux';
 
 import Player from '../../components/webinar/Player';
 import Chat from '../../components/webinar/Chat';
-import './style.scss';
+import chatSocket from '../socketIo/Chat';
 
-const messages = [
-    {
-        id: 3,
-        sender: 'conquista',
-        date: '01/02/2019',
-        idSender: 1,
-        text:
-            'Minha duvida é a respeito da forma como é feito este webinar, pode me ajudar ?',
-    },
-    {
-        id: 2,
-        sender: 'admin',
-        date: '01/02/2019',
-        idSender: 2,
-        text: 'Tudo. Qual sua duvida ?',
-    },
-    {
-        id: 1,
-        sender: 'conquista',
-        date: '01/02/2019',
-        idSender: 1,
-        text: 'Oi tudo bem ?',
-    },
-];
+import './style.scss';
 
 export const WebinarContentContext = React.createContext({});
 
 const Webinar = props => {
     const {
-        auth: { id: userId },
+        auth: { _id: userId, name },
+        chat: { messages, countUsers },
+        getMessages,
+        sendMessage,
+        onCount,
+        registerOnCount,
+        onMessageReceive,
+        registerOnMessageReceive,
+        setMessage,
+        setcount,
     } = props;
+
+    useEffect(() => {
+        getMessages();
+        onCount(connect);
+        registerOnCount();
+        onMessageReceive(messageReceive);
+        registerOnMessageReceive();
+    }, []);
+
+    const connect = count => setcount(count);
+    const messageReceive = message => setMessage([message]);
 
     return (
         <WebinarContentContext.Provider
             value={{
+                sendMessage,
                 messages,
                 userId,
+                name,
             }}
         >
             <div className="webinar-page">
@@ -54,7 +53,7 @@ const Webinar = props => {
                         <strong>status:</strong> <span>online</span>
                     </div>
                     <div className="only-users">
-                        <strong>79</strong> <span>online</span>
+                        <strong>{countUsers}</strong> <span>online</span>
                     </div>
                 </div>
                 <div className="webinar-page__bottom">
@@ -67,6 +66,20 @@ const Webinar = props => {
 
 const mapState = state => ({
     auth: state.auth,
+    chat: state.chat,
 });
 
-export default withRouter(connect(mapState)(memo(Webinar)));
+const mapDispatch = dispatch => ({
+    getMessages: payload => dispatch.chat.getMessagesAsync(payload),
+    sendMessage: payload => dispatch.chat.sendMessageAsync(payload),
+    setMessage: payload => dispatch.chat.messages(payload),
+    setcount: payload => dispatch.chat.count(payload),
+});
+
+export default compose(
+    chatSocket,
+    connect(
+        mapState,
+        mapDispatch,
+    ),
+)(memo(Webinar));

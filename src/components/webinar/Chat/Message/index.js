@@ -1,39 +1,41 @@
 import React, { memo } from 'react';
 import classnames from 'classnames';
+import moment from 'moment';
 
 import './style.scss';
 
-const Message = props => {
-    const { message, userId } = props;
-    return (
+const Message = ({ message, userId }) => (
+    <div
+        className={classnames({
+            chat__message: true,
+            you: userId === message.sender._id,
+        })}
+    >
+        {userId !== message.sender._id && (
+            <div className="info-message">
+                <div className="sender">{message.sender.name}</div>
+                <div className="date">
+                    {moment(message.createdAt).format('DD/MM/YYYY HH:mm')}
+                </div>
+            </div>
+        )}
         <div
             className={classnames({
-                chat__message: true,
-                you: userId === message.idSender,
+                message: true,
+                you: userId === message.sender._id,
             })}
         >
-            {userId !== message.idSender && (
-                <div className="info-message">
-                    <div className="sender">{message.sender}</div>
-                    <div className="date">{message.date}</div>
-                </div>
-            )}
-            <div
-                className={classnames({
-                    message: true,
-                    you: userId === message.idSender,
-                })}
-            >
-                {message.text}
-            </div>
-            {userId === message.idSender && (
-                <div className="info-message">
-                    <div className="sender">{message.sender}</div>
-                    <div className="date">{message.date}</div>
-                </div>
-            )}
+            {message.text}
         </div>
-    );
-};
+        {userId === message.sender._id && (
+            <div className="info-message">
+                <div className="sender">{message.sender.name}</div>
+                <div className="date">
+                    {moment(message.createdAt).format('DD/MM/YYYY HH:mm')}
+                </div>
+            </div>
+        )}
+    </div>
+);
 
 export default memo(Message);

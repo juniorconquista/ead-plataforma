@@ -11,6 +11,7 @@
     "classnames": "^2.2.6",
     "emoji-mart": "^2.11.0",
     "formik": "^1.4.0",
+    "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -20,6 +21,7 @@
     "react-spring": "^8.0.10",
     "react-toastify": "^4.4.3",
     "redux-persist": "^5.10.0",
+    "socket.io-client": "^2.2.0",
     "yup": "^0.26.6"
   },
   "scripts": {

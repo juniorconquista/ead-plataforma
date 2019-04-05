@@ -18,7 +18,6 @@ export const auth = {
             try {
                 const response = await repository.login(payload);
                 sessionStorage.setItem('accessToken', response.data.uuid);
-                dispatch.auth.login(response.data);
                 return dispatch.auth.login({
                     ...response.data,
                     accessToken: response.data.uuid,

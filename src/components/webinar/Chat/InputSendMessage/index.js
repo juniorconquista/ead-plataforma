@@ -11,7 +11,7 @@ import './style.scss';
 const InputSendMessage = ({ field, errors, values, setFieldValue }) => {
     const [toggleEmoji, handleEmoji] = useState(false);
     const handleSelectedEmoji = emoji => {
-        setFieldValue('message', values.message + emoji.native);
+        setFieldValue('text', values.text + emoji.native);
         handleEmoji(false);
     };
 
@@ -19,7 +19,7 @@ const InputSendMessage = ({ field, errors, values, setFieldValue }) => {
         <div
             className={classnames({
                 'input-group': true,
-                'is-invalid': errors.message,
+                'is-invalid': errors.text,
             })}
         >
             <button
