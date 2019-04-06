@@ -23,6 +23,26 @@
                 color: $gray-02;
                 font-size: 11px;
             }
+            .await-approve {
+                display: flex;
+                align-items: center;
+                letter-spacing: 1px;
+                span {
+                    color: $gray-02;
+                    font-size: 11px;
+                    font-weight: bold;
+                }
+                svg {
+                    height: 10px;
+                    padding-right: 3px;
+                    path {
+                        fill: #ad26f7;
+                    }
+                }
+            }
+        }
+        .info-message.you {
+            align-items: flex-end;
         }
         .message {
             margin: 0px 15px;
@@ -61,5 +81,8 @@
         .info-message {
             justify-content: flex-end;
         }
+    }
+    .chat__message.await-approved {
+        opacity: 0.43;
     }
 }
