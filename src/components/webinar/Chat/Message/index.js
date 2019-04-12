@@ -11,7 +11,7 @@ const Message = ({ message, userId }) => (
         className={classnames({
             chat__message: true,
             you: userId === message.sender._id,
-            'await-approved': !message.approved,
+            'await-approved': message.status !== 'approved',
         })}
     >
         {userId === message.sender._id && (
@@ -20,7 +20,7 @@ const Message = ({ message, userId }) => (
                 <div className="date">
                     {moment(message.createdAt).format('DD/MM/YYYY HH:mm')}
                 </div>
-                {!message.approved && (
+                {message.status !== 'approved' && (
                     <div className="await-approve">
                         <IconClock />
                         <span>Aguardando aprovação </span>
@@ -42,7 +42,7 @@ const Message = ({ message, userId }) => (
                 <div className="date">
                     {moment(message.createdAt).format('DD/MM/YYYY HH:mm')}
                 </div>
-                {!message.approved && (
+                {message.status !== 'approved' && (
                     <div className="await-approve">
                         <IconClock />
                         <span>Aguardando aprovação </span>

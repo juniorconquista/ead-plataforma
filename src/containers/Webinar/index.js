@@ -20,7 +20,9 @@ const Webinar = props => {
         registerOnCount,
         onMessageReceive,
         registerOnMessageReceive,
-        setMessage,
+        onMessageUpdateReceive,
+        registerOnMessageUpdateReceive,
+        setMessageReceived,
         setcount,
     } = props;
 
@@ -30,10 +32,13 @@ const Webinar = props => {
         registerOnCount();
         onMessageReceive(messageReceive);
         registerOnMessageReceive();
+        onMessageUpdateReceive(messageUpdate);
+        registerOnMessageUpdateReceive();
     }, []);
 
     const connect = count => setcount(count);
-    const messageReceive = message => setMessage([message]);
+    const messageReceive = message => setMessageReceived([message]);
+    const messageUpdate = () => getMessages();
 
     return (
         <WebinarContentContext.Provider
@@ -70,9 +75,9 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-    getMessages: payload => dispatch.chat.getMessagesAsync(payload),
+    getMessages: () => dispatch.chat.getMessagesAsync(),
     sendMessage: payload => dispatch.chat.sendMessageAsync(payload),
-    setMessage: payload => dispatch.chat.messages(payload),
+    setMessageReceived: payload => dispatch.chat.messagesUpdate(payload),
     setcount: payload => dispatch.chat.count(payload),
 });
 

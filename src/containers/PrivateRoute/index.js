@@ -8,7 +8,7 @@ const PrivateRouter = ({ component, ...rest }) => {
         auth,
         history: { location },
     } = rest;
-
+    
     if (auth && auth.accessToken && sessionStorage.getItem('accessToken')) {
         return <Route {...rest} component={component} />;
     }

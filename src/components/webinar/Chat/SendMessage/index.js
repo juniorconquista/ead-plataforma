@@ -32,7 +32,6 @@ const Message = ({ sendMessage, userId, name }) => {
                                 render={({ field }) => (
                                     <InputSendMessage
                                         field={field}
-                                        errors={errors}
                                         setFieldValue={setFieldValue}
                                         values={values}
                                     />

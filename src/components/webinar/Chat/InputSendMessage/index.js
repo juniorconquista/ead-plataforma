@@ -19,7 +19,6 @@ const InputSendMessage = ({ field, errors, values, setFieldValue }) => {
         <div
             className={classnames({
                 'input-group': true,
-                'is-invalid': errors.text,
             })}
         >
             <button

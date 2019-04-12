@@ -16,7 +16,7 @@ const Chat = () => {
                     .map(
                         message =>
                             message &&
-                            (message.approved ||
+                            (message.status === 'approved' ||
                                 userId === message.sender._id) && (
                                 <Message
                                     key={message._id}

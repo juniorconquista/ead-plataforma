@@ -1,0 +1,106 @@
+@import '../../../../assets/style/variables.scss';
+
+.menu-holder {
+    background-color: $primary;
+    height: 100%;
+    width: 288px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    transition: left ease-in-out 0.3s;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    &.close {
+        left: -235px;
+        .menu-item {
+            span {
+                margin-left: 210px;
+            }
+            p {
+                display: none;
+            }
+        }
+        .menu-holder__logo {
+            span:last-child {
+                margin-left: 20px;
+                transform: rotate(180deg);
+            }
+        }
+        .menu-logo__orange {
+            img {
+                max-height: 50px;
+            }
+        }
+    }
+    .menu-holder__logo {
+        background-color: transparent;
+        border: none;
+        padding: 0px;
+        display: flex;
+        width: 100%;
+        min-height: 40px;
+        display: flex;
+        margin-bottom: 15px;
+        justify-content: space-between;
+        img {
+            height: auto;
+            width: 100%;
+            cursor: pointer;
+            width: auto;
+            max-height: 40px;
+        }
+        span {
+            color: #fff;
+            font-size: 35px;
+            cursor: pointer;
+            transition: 0.6s ease-in-out all;
+        }
+    }
+    .menu-item {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-size: 14px;
+        letter-spacing: 2px;
+        font-weight: 400;
+        padding: 8px;
+        border-radius: 3px;
+        transition: 0.3s ease-in-out all;
+        span {
+            margin-right: 10px;
+            transition: all ease-in-out 0.3s;
+        }
+        &.active {
+            background: $secondary;
+        }
+    }
+    .menu-logo__orange {
+        background-color: transparent;
+        border: none;
+        padding: 0px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        transition: 0.3s ease-in-out all;
+        cursor: pointer;
+        img {
+            height: auto;
+            width: 100%;
+            cursor: pointer;
+            width: auto;
+            max-height: 70px;
+            transition: 0.3s ease-in-out all;
+        }
+        span {
+            cursor: pointer;
+        }
+    }
+}

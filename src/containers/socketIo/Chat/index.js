@@ -28,6 +28,18 @@ const chatSocketIo = Component =>
             this.onMessageReceiveCallback = callback;
         };
 
+        registerOnMessageUpdateReceive = () => {
+            const event = 'chat|message|update';
+            this.socket.off(event);
+            this.socket.on(event, response =>
+                this.onMessageReceiveUpdateCallback(response),
+            );
+        };
+
+        onMessageUpdateReceive = callback => {
+            this.onMessageReceiveUpdateCallback = callback;
+        };
+
         render() {
             this.socket = findOrCreate(BASE_URL);
             const { props } = this;
@@ -35,6 +47,8 @@ const chatSocketIo = Component =>
                 <Component
                     onMessageReceive={this.onMessageReceive}
                     registerOnMessageReceive={this.registerOnMessageReceive}
+                    onMessageUpdateReceive={this.onMessageUpdateReceive}
+                    registerOnMessageUpdateReceive={this.registerOnMessageUpdateReceive}
                     onCount={this.onCount}
                     registerOnCount={this.registerOnCount}
                     {...props}
