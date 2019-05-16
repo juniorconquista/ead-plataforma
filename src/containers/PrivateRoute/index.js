@@ -7,12 +7,22 @@ const PrivateRouter = ({ component, ...rest }) => {
     const {
         auth,
         history: { location },
+        isAdmin,
     } = rest;
-    
+
     if (auth && auth.accessToken && sessionStorage.getItem('accessToken')) {
         return <Route {...rest} component={component} />;
     }
-
+    if (isAdmin && !auth.isAdmin) {
+        return (
+            <Redirect
+                to={{
+                    pathname: '/login',
+                    state: { from: location },
+                }}
+            />
+        );
+    }
     return (
         <Redirect
             to={{

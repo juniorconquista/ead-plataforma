@@ -10,9 +10,11 @@ import './style.scss';
 
 export const WebinarContentContext = React.createContext({});
 
+const MINUTE = 60 * 1000;
+
 const Webinar = props => {
     const {
-        auth: { _id: userId, name },
+        auth: { _id: userId, name, uuid, isAdmin },
         chat: { messages, countUsers },
         getMessages,
         sendMessage,
@@ -24,6 +26,8 @@ const Webinar = props => {
         registerOnMessageUpdateReceive,
         setMessageReceived,
         setcount,
+        setStatus,
+        deleteStatus,
     } = props;
 
     useEffect(() => {
@@ -34,6 +38,24 @@ const Webinar = props => {
         registerOnMessageReceive();
         onMessageUpdateReceive(messageUpdate);
         registerOnMessageUpdateReceive();
+        setStatus({
+            uuid,
+            name,
+            isAdmin,
+            date: new Date(),
+        });
+        const interval = setInterval(() => {
+            setStatus({
+                uuid,
+                name,
+                isAdmin,
+                date: new Date(),
+            });
+        }, 1 * MINUTE);
+        return () => {
+            clearInterval(interval);
+            deleteStatus(uuid);
+        };
     }, []);
 
     const connect = count => setcount(count);
@@ -79,6 +101,8 @@ const mapDispatch = dispatch => ({
     sendMessage: payload => dispatch.chat.sendMessageAsync(payload),
     setMessageReceived: payload => dispatch.chat.messagesUpdate(payload),
     setcount: payload => dispatch.chat.count(payload),
+    setStatus: payload => dispatch.status.setStatusAsync(payload),
+    deleteStatus: payload => dispatch.status.deleteStatusAsync(payload),
 });
 
 export default compose(

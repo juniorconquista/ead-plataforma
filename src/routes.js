@@ -5,6 +5,7 @@ import PrivateRoute from './containers/PrivateRoute';
 import Webinar from './containers/Webinar';
 import MainContainer from './containers/admin/main';
 import AdminChat from './containers/admin/Chat';
+import AdminStatus from './containers/admin/Status';
 
 const component = () => <></>;
 
@@ -26,6 +27,11 @@ export default () => (
                         isAdmin
                         path="/admin/chat"
                         component={AdminChat}
+                    />
+                    <PrivateRoute
+                        isAdmin
+                        path="/admin/status"
+                        component={AdminStatus}
                     />
                     <Redirect to="/webinar" />
                 </Switch>

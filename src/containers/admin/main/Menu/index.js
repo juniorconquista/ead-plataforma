@@ -57,8 +57,11 @@ const Menu = props => {
                 <p>Chat</p>
             </Link>
             <Link
-                className={`menu-item ${activeClass(pathname, '/team')}`}
-                to="/team"
+                className={`menu-item ${activeClass(
+                    pathname,
+                    '/admin/status',
+                )}`}
+                to="/admin/status"
             >
                 <Icon>group</Icon>
                 <p>Status</p>
