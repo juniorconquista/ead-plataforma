@@ -65,8 +65,6 @@ export const chat = {
         },
         async statusMessageAsync(data, getState) {
             try {
-                console.log(data);
-
                 const { id, status } = data;
                 await repository.statusMessage(id, status);
                 const {
@@ -77,7 +75,6 @@ export const chat = {
                 );
                 dispatch.chat.messagesWaiting(newMessages);
             } catch (e) {
-                console.log(e);
                 throw e;
             }
         },

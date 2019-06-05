@@ -29,7 +29,7 @@ const Menu = props => {
                 onClick={() => togglMenu(prevState => !prevState)}
                 className="menu-holder__logo"
             >
-                <Icon>menu</Icon>
+               
                 <Icon>keyboard_arrow_left</Icon>
             </button>
             <Link

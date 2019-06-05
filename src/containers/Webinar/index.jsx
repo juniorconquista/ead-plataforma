@@ -15,7 +15,10 @@ const MINUTE = 60 * 1000;
 const Webinar = props => {
     const {
         auth: { _id: userId, name, uuid, isAdmin },
+        settings: { configuration },
         chat: { messages, countUsers },
+        history: { push },
+        getConfiguration,
         getMessages,
         sendMessage,
         onCount,
@@ -31,6 +34,10 @@ const Webinar = props => {
     } = props;
 
     useEffect(() => {
+        if (isAdmin) {
+            push('/admin');
+        }
+        getConfiguration();
         getMessages();
         onCount(connect);
         registerOnCount();
@@ -65,6 +72,7 @@ const Webinar = props => {
     return (
         <WebinarContentContext.Provider
             value={{
+                configuration,
                 sendMessage,
                 messages,
                 userId,
@@ -93,10 +101,13 @@ const Webinar = props => {
 
 const mapState = state => ({
     auth: state.auth,
+    settings: state.settings,
     chat: state.chat,
 });
 
 const mapDispatch = dispatch => ({
+    getConfiguration: payload =>
+        dispatch.settings.getConfigurationAsync(payload),
     getMessages: () => dispatch.chat.getMessagesAsync(),
     sendMessage: payload => dispatch.chat.sendMessageAsync(payload),
     setMessageReceived: payload => dispatch.chat.messagesUpdate(payload),

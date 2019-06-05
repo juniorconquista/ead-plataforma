@@ -2,23 +2,22 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect, Route, withRouter } from 'react-router-dom';
+import { validateRoutePermission } from '../../utils/private-route';
 
 const PrivateRouter = ({ component, ...rest }) => {
     const {
         auth,
         history: { location },
-        isAdmin,
     } = rest;
 
     if (auth && auth.accessToken && sessionStorage.getItem('accessToken')) {
-        return <Route {...rest} component={component} />;
-    }
-    if (isAdmin && !auth.isAdmin) {
+        if (validateRoutePermission(rest.path, rest)) {
+            return <Route {...rest} component={component} />;
+        }
         return (
             <Redirect
                 to={{
-                    pathname: '/login',
-                    state: { from: location },
+                    pathname: '/webinar',
                 }}
             />
         );
@@ -34,7 +33,11 @@ const PrivateRouter = ({ component, ...rest }) => {
 };
 
 PrivateRouter.propTypes = {
-    component: PropTypes.func.isRequired,
+    component: PropTypes.oneOfType([
+        PropTypes.func.isRequired,
+        PropTypes.node.isRequired,
+        PropTypes.shape({}).isRequired,
+    ]).isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -4,6 +4,7 @@ import Login from './containers/Login';
 import PrivateRoute from './containers/PrivateRoute';
 import Webinar from './containers/Webinar';
 import MainContainer from './containers/admin/main';
+import AdminSettings from './containers/admin/Settings';
 import AdminChat from './containers/admin/Chat';
 import AdminStatus from './containers/admin/Status';
 
@@ -19,17 +20,18 @@ export default () => (
                 <Switch>
                     <PrivateRoute
                         exact
-                        isAdmin
                         path="/admin"
                         component={component}
                     />
                     <PrivateRoute
-                        isAdmin
+                        path="/admin/settings"
+                        component={AdminSettings}
+                    />
+                    <PrivateRoute
                         path="/admin/chat"
                         component={AdminChat}
                     />
                     <PrivateRoute
-                        isAdmin
                         path="/admin/status"
                         component={AdminStatus}
                     />

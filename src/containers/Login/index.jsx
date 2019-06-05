@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import ErrorForm from '../../components/shared/ErrorForm';
-import Education from '../../assets/icons/education.svg';
+import LOGO from '../../assets/images/logo.png';
 import './style.scss';
 
 const SignupSchema = Yup.object().shape({
@@ -23,7 +23,7 @@ const Login = memo(props => {
         <div className="login-page">
             <div className="login-page__form">
                 <div className="form__logo">
-                    <img src={Education} alt="education" />
+                    <img src={LOGO} alt="education" />
                 </div>
                 <Formik
                     initialValues={{ email: '', password: '' }}

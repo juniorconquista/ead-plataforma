@@ -12,11 +12,21 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         .welcome-header {
             color: #9b9b9e;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
             span {
                 font-weight: bold;
+                margin-left: 5px;
+            }
+            .logo {
+                margin-right: 10px;
+                img {
+                    max-height: 75px;
+                }
             }
         }
         .info-header {
