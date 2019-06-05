@@ -7,7 +7,7 @@ import imgDefaultUser from '../../../assets/images/img_user_default.png';
 import Menu from './Menu';
 import './style.scss';
 
-import LOGO from '../../../assets/images/logo.png';
+// import LOGO from '../../../assets/images/logo.png';
 
 export const MainContentContext = React.createContext({});
 
@@ -37,7 +37,7 @@ const Main = props => {
                 <div className="header">
                     <div className="welcome-header">
                         <div className="logo">
-                            <img src={LOGO} alt="education" />
+                            {/* <img src={LOGO} alt="education" /> */}
                         </div>
                         Bem vindo <span>{name}</span> !
                     </div>

@@ -3,11 +3,15 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+
+import { ReactComponent as IconUser } from '../../assets/icons/user.svg';
+import { ReactComponent as IconPassword } from '../../assets/icons/password.svg';
 
 import ErrorForm from '../../components/shared/ErrorForm';
-import LOGO from '../../assets/images/logo.png';
+import InputGroup from '../../components/shared/InputGroup';
+import Button from '../../components/shared/Button';
+
+import LOGO from '../../assets/icons/logo.svg';
 import './style.scss';
 
 const SignupSchema = Yup.object().shape({
@@ -43,13 +47,10 @@ const Login = memo(props => {
                                 type="text"
                                 name="email"
                                 render={({ field }) => (
-                                    <TextField
-                                        id="outlined-email"
-                                        label="E-mail"
-                                        margin="normal"
-                                        autoComplete="current-email"
-                                        variant="outlined"
+                                    <InputGroup
                                         {...field}
+                                        Icon={IconUser}
+                                        autoComplete="current-email"
                                     />
                                 )}
                             />
@@ -57,31 +58,35 @@ const Login = memo(props => {
                                 <ErrorForm message={errors.email} />
                             ) : null}
                             <Field
-                                type="text"
+                                type="password"
                                 name="password"
                                 render={({ field }) => (
-                                    <TextField
-                                        autoComplete="current-password"
-                                        id="outlined-password-input"
-                                        label="Senha"
-                                        type="password"
-                                        margin="normal"
-                                        variant="outlined"
+                                    <InputGroup
                                         {...field}
+                                        Icon={IconPassword}
+                                        autoComplete="current-password"
+                                        type="password"
                                     />
                                 )}
                             />
                             {errors.senha && touched.senha ? (
                                 <ErrorForm message={errors.senha} />
                             ) : null}
+
+                            <div className="form__info">
+                                Esqueci minha senha
+                            </div>
                             <div className="form__button">
+                                <Button type="submit" text="Login" />
                                 <Button
                                     type="submit"
-                                    variant="contained"
-                                    color="primary"
-                                >
-                                    Login
-                                </Button>
+                                    style={{
+                                        backgroundColor: '#FFF',
+                                        border: '1px solid #05C4C0',
+                                        color: '#05C4C0',
+                                    }}
+                                    text="Cadastre-se"
+                                />
                             </div>
                         </Form>
                     )}
