@@ -1,7 +1,7 @@
 import React, { memo, useContext } from 'react';
 import { WebinarContentContext } from '../../../containers/Webinar';
 import Message from './Message';
-import SendMessage from './SendMessage';
+import SendMessage from '../../shared/SendMessage';
 
 import './style.scss';
 
@@ -10,8 +10,8 @@ const Chat = () => {
         WebinarContentContext,
     );
     return (
-        <div className="chat__content">
-            <div className="chat__messages">
+        <div className="chat">
+            <div className="messages">
                 {messages
                     .map(
                         message =>

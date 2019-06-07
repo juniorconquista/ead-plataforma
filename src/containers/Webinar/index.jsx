@@ -5,6 +5,14 @@ import { connect } from 'react-redux';
 import Player from '../../components/webinar/Player';
 import Chat from '../../components/webinar/Chat';
 import chatSocket from '../socketIo/Chat';
+import LOGO from '../../assets/icons/logo.svg';
+
+import { ReactComponent as IconMessages } from '../../assets/icons/mensagens.svg';
+import { ReactComponent as IconPresentation } from '../../assets/icons/apresentacao.svg';
+import { ReactComponent as IconNotification } from '../../assets/icons/sino.svg';
+import { ReactComponent as IconUser } from '../../assets/icons/user.svg';
+
+import imgDefaultUser from '../../assets/images/img_user_default.png';
 
 import './style.scss';
 
@@ -80,19 +88,51 @@ const Webinar = props => {
             }}
         >
             <div className="webinar-page">
-                <div className="webinar-page__top">
-                    <Player />
-                </div>
-                <div className="webinar-page__info">
-                    <div className="status-webinar">
-                        <strong>status:</strong> <span>online</span>
+                <div className="header">
+                    <div className="logo">
+                        <img src={LOGO} alt="education" />
                     </div>
-                    <div className="only-users">
-                        <strong>{countUsers}</strong> <span>online</span>
+                    <div className="user">
+                        <div className="notification">
+                            <IconNotification />
+                            <div className="bagde">2</div>
+                        </div>
+                        <div className="img">
+                            <img src={imgDefaultUser} alt="" />
+                        </div>
                     </div>
                 </div>
-                <div className="webinar-page__bottom">
-                    <Chat />
+                <div className="info-video">
+                    <h1>Lingua Portuguesa</h1>
+                    <h3>Como interpretar textos</h3>
+                </div>
+                <div className="content">
+                    <div className="box">
+                        <Player />
+                        <Chat />
+                        <div className="tabs">
+                            <button className="active">
+                                <IconMessages />
+                            </button>
+                            <button>
+                                <IconPresentation />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="menu-mobile">
+                    <button>
+                        <IconUser />
+                    </button>
+                    <button className="active">
+                        <IconMessages />
+                    </button>
+                    <button>
+                        <IconPresentation />
+                    </button>
+                    <button>
+                        <IconNotification />
+                    </button>
                 </div>
             </div>
         </WebinarContentContext.Provider>

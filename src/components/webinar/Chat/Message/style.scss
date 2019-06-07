@@ -1,16 +1,19 @@
 @import '../../../../assets/style/variables.scss';
 
-.chat__content {
-    .chat__message {
+.chat__message {
+    display: flex;
+    .box-message {
         display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        justify-content: flex-start;
-        .info-message {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+        width: 100%;
+        order: 1;
+        .message {
+            flex: 1;
+            margin-top: 10px;
+            order: 1;
+        }
+        .data {
+            text-align: right;
+            padding-bottom: 2px;
             .sender,
             .date {
                 text-transform: capitalize;
@@ -21,13 +24,13 @@
             }
             .date {
                 color: $gray-02;
-                font-size: 11px;
             }
             .await-approve {
                 display: flex;
                 align-items: center;
                 letter-spacing: 1px;
-                span {
+                justify-content: flex-end;
+                p {
                     color: $gray-02;
                     font-size: 11px;
                     font-weight: bold;
@@ -36,53 +39,90 @@
                     height: 10px;
                     padding-right: 3px;
                     path {
-                        fill: #ad26f7;
+                        fill: $primary;
                     }
                 }
             }
         }
-        .info-message.you {
-            align-items: flex-end;
+        .content-message {
+            border: 1px solid #b9b9b9;
+            border-radius: 20px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            color: $gray-02;
         }
-        .message {
-            margin: 0px 15px;
-            max-width: 71%;
-            border-radius: 4px;
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-            font-size: 14px;
-            font-weight: 300;
-            padding: 15px;
+        .arrow {
+            text-align: right;
             position: relative;
-            word-break: break-word;
-            letter-spacing: 1px;
-            &::after {
-                content: '';
-                position: absolute;
-                border-top: 10px solid white;
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                left: -10px;
-                top: 0;
-            }
+            right: 22px;
+            top: 37px;
+            order: 2;
         }
-        .message.you {
-            background-color: #efefef;
-            filter: drop-shadow(-1px 2px 1px rgba(0, 0, 0, 0.06));
-            &::after {
-                border-top: 10px solid #efefef;
-                right: -10px;
-                left: 0;
+    }
+    .box-user {
+        display: flex;
+        position: relative;
+        right: 15px;
+        order: 2;
+        @media (max-width: 375px) {
+            display: none;
+        }
+        .user {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(75, 75, 75, 0.06);
+            img {
+                width: 102%;
+                height: auto;
+                object-fit: contain;
             }
         }
     }
-    .chat__message.you {
-        justify-content: flex-end;
-        .info-message {
-            justify-content: flex-end;
+}
+
+.chat__message.await-approved {
+    opacity: 0.43;
+    .box-message {
+        .message {
+            margin-top: 0px;
+        }
+        .data {
+            padding-bottom: 8px;
+        }
+        .arrow {
+            right: 23px;
+            top: 44px;
         }
     }
-    .chat__message.await-approved {
-        opacity: 0.43;
+}
+
+.chat__message.you {
+    .box-message,
+    .message {
+        order: 2;
+    }
+    .box-user,
+    .arrow {
+        order: 1;
+    }
+    .box-message {
+        .content-message {
+            padding-left: 25px;
+        }
+        .data {
+            text-align: left;
+            .await-approve {
+                justify-content: flex-start;
+            }
+        }
+        .arrow {
+            transform: rotateY(180deg);
+            left: 22px;
+        }
+    }
+    .box-user {
+        left: 15px;
     }
 }

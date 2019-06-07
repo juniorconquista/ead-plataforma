@@ -1,11 +1,24 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
+import renderHTML from 'react-render-html';
+
+import { WebinarContentContext } from '../../../containers/Webinar';
 
 import './style.scss';
 
-const Player = () => (
-    <div className="player">
-        <div className="info">Aguarde a transmissão vai começar em breve</div>
-    </div>
-);
+const Player = () => {
+    const { configuration } = useContext(WebinarContentContext);
+    console.log(configuration);
+    return (
+        <div className="player">
+            {configuration.url && !!configuration.url.length ? (
+                renderHTML(configuration.url)
+            ) : (
+                <div className="info">
+                    Aguarde a transmissão vai começar em breve
+                </div>
+            )}
+        </div>
+    );
+};
 
 export default memo(Player);
