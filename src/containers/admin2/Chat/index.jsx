@@ -76,12 +76,12 @@ const AdminChat = props => {
                                         Recusar
                                     </Button>
                                     <Button
-                                        onClick={() =>
-                                            statusMessage({
-                                                id: item._id,
-                                                status: 'approved',
-                                            })
-                                        }
+                                            onClick={() =>
+                                                statusMessage({
+                                                    id: item._id,
+                                                    status: 'approved',
+                                                })
+                                            }
                                         type="button"
                                         color="primary"
                                         variant="contained"

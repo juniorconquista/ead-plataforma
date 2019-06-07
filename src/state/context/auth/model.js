@@ -26,6 +26,13 @@ export const auth = {
                 throw e;
             }
         },
+        async registerAsync(payload) {
+            try {
+                await repository.register(payload);
+            } catch (e) {
+                throw e;
+            }
+        },
         clearStores() {
             dispatch.auth.clearStore();
         },

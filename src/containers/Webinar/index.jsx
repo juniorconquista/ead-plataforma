@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import Player from '../../components/webinar/Player';
 import Chat from '../../components/webinar/Chat';
 import chatSocket from '../socketIo/Chat';
-import LOGO from '../../assets/icons/logo.svg';
 
 import { ReactComponent as IconMessages } from '../../assets/icons/mensagens.svg';
 import { ReactComponent as IconPresentation } from '../../assets/icons/apresentacao.svg';
 import { ReactComponent as IconNotification } from '../../assets/icons/sino.svg';
 import { ReactComponent as IconUser } from '../../assets/icons/user.svg';
 
+import LOGO from '../../assets/icons/logo.svg';
 import imgDefaultUser from '../../assets/images/img_user_default.png';
 
 import './style.scss';
@@ -24,7 +24,7 @@ const Webinar = props => {
     const {
         auth: { _id: userId, name, uuid, isAdmin },
         settings: { configuration },
-        chat: { messages, countUsers },
+        chat: { messages },
         history: { push },
         getConfiguration,
         getMessages,

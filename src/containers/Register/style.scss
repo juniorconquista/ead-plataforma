@@ -1,6 +1,6 @@
 @import '../../assets/style/variables.scss';
 
-.login-page {
+.register-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +19,7 @@
             margin-bottom: 10px;
         }
     }
-    .login-page__form {
+    .register-page__form {
         width: 400px;
         display: flex;
         flex-direction: column;
@@ -48,20 +48,9 @@
             align-content: center;
             align-items: center;
             justify-content: center;
-            button,
-            a {
+            button {
                 width: 50%;
                 margin-bottom: 15px;
-                cursor: pointer;
-            }
-            a {
-                background-color: #fff;
-                border: 1px solid #05c4c0;
-                color: #05c4c0;
-                text-decoration: none;
-                border-radius: 4px;
-                text-align: center;
-                padding: 8px 12px;
             }
         }
     }
