@@ -103,8 +103,8 @@ const Webinar = props => {
                     </div>
                 </div>
                 <div className="info-video">
-                    <h1>Lingua Portuguesa</h1>
-                    <h3>Como interpretar textos</h3>
+                    <h1>{configuration.title || ''}</h1>
+                    <h3>{configuration.description || ''}</h3>
                 </div>
                 <div className="content">
                     <div className="box">

@@ -5,9 +5,10 @@ import Register from './containers/Register';
 import PrivateRoute from './containers/PrivateRoute';
 import Webinar from './containers/Webinar';
 import MainContainer from './containers/Admin';
-// import AdminSettings from './containers/admin/Settings';
 import AdminChat from './components/admin/Chat';
-// import AdminStatus from './containers/admin/Status';
+import AdminSettings from './components/admin/Settings';
+import AdminSlide from './components/admin/Slide';
+import AdminStatus from './components/admin/Status';
 
 const component = () => <></>;
 
@@ -21,15 +22,18 @@ export default () => (
                 <Switch>
                     <PrivateRoute exact path="/admin" component={component} />
                     <PrivateRoute path="/admin/chat" component={AdminChat} />
-                    {/* <PrivateRoute
+                    <PrivateRoute
                         path="/admin/settings"
                         component={AdminSettings}
                     />
-                    
+                    <PrivateRoute
+                        path="/admin/slide"
+                        component={AdminSlide}
+                    />
                     <PrivateRoute
                         path="/admin/status"
                         component={AdminStatus}
-                    /> */}
+                    />
                     <Redirect to="/webinar" />
                 </Switch>
             </MainContainer>
