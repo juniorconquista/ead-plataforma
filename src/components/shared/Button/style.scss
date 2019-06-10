@@ -1,0 +1,11 @@
+@import '../../../assets/style/variables.scss';
+
+.base-button {
+    background-color: $primary;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid transparent;
+    width: 100%;
+    font-size: 15px;
+}

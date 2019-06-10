@@ -1,0 +1,23 @@
+@import '../../../assets/style/variables.scss';
+
+.chat__content-admin {
+    h1 {
+        color: $primary;
+        text-align: center;
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+    .messages {
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+        height: calc(100vh - 350px);
+        overflow: auto;
+        padding: 20px;
+        box-sizing: content-box;
+        @media (max-width: 375px) {
+            height: calc(100vh - 290px);
+            padding: 10px;
+        }
+    }
+}

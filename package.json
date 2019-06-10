@@ -1,0 +1,56 @@
+{
+  "name": "tool-for-ead-support",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^3.6.2",
+    "@rematch/core": "^1.0.6",
+    "@rematch/loading": "^1.1.2",
+    "@rematch/persist": "^1.1.5",
+    "axios": "^0.18.0",
+    "classnames": "^2.2.6",
+    "emoji-mart": "^2.11.0",
+    "formik": "^1.4.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.11.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^6.0.0",
+    "react-render-html": "^0.6.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "react-spring": "^8.0.10",
+    "react-toastify": "^4.4.3",
+    "redux-persist": "^5.10.0",
+    "socket.io-client": "^2.2.0",
+    "yup": "^0.26.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "*.{js,jsx,json,css,scss,md,ts,tsx,graphql,prettierrc,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}"
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

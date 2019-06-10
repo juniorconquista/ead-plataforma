@@ -1,0 +1,68 @@
+@import '../../assets/style/variables.scss';
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff;
+    background-image: url('../../assets/icons/caminho.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    .form__logo {
+        margin-bottom: 60px;
+        svg {
+            height: 180px;
+            width: auto;
+            margin-bottom: 10px;
+        }
+    }
+    .login-page__form {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: censter;
+        align-items: center;
+        @media (max-width: 375px) {
+            width: 90%;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 330px;
+            @media (max-width: 375px) {
+                width: 280px;
+            }
+        }
+        .form__info {
+            color: $primary;
+            text-align: right;
+        }
+        .form__button {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            button,
+            a {
+                width: 50%;
+                margin-bottom: 15px;
+                cursor: pointer;
+            }
+            a {
+                background-color: #fff;
+                border: 1px solid #05c4c0;
+                color: #05c4c0;
+                text-decoration: none;
+                border-radius: 4px;
+                text-align: center;
+                padding: 8px 12px;
+            }
+        }
+    }
+}

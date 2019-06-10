@@ -1,0 +1,60 @@
+// colors base
+$primary: #37373d;
+$secondary: #99999c;
+$error: #bf342a;
+$info: #3f51b5;
+
+//* Path */
+$root: '/* @echo PATH */';
+//* PALETAS */
+$black: #000;
+$white: #fff;
+$off-white-01: #eeeeef;
+$off-white-02: #f2fbfe;
+$gray-01: #eeeeef;
+$gray-02: #9398a6;
+$gray-03: #4b4b4b;
+$gray-04: #1c1c1c;
+$blue-01: #d7edf4;
+$blue-02: #6bcfee;
+$blue-03: #00a8d6;
+$blue-04: #0089ae;
+$pink-01: #eba7c9;
+$pink-01: #db5f9d;
+$pink-02: #c12273;
+$pink-03: #8d1954;
+$red-01: #f67c5c;
+$red-02: #df4d2d;
+$red-03: #ae371f;
+$red-04: #8f2e1a;
+$orange-01: #ffd868;
+$orange-02: #ffb143;
+$orange-03: #e4902c;
+$orange-04: #a66921;
+$green-01: #7cdf5e;
+$green-02: #35bb2d;
+$green-03: #2c7e21;
+$green-04: #1d5115;
+$primary: #05C4C0;
+
+/*color names lists*/
+
+$colors_names: 'black', 'white', 'off-white-01', 'off-white-02', 'gray-01',
+    'gray-02', 'gray-03', 'gray-04', 'blue-01', 'blue-02', 'blue-03', 'blue-04',
+    'pink-01', 'pink-01', 'pink-02', 'pink-03', 'red-01', 'red-02', 'red-03',
+    'red-04', 'orange-01', 'orange-02', 'orange-03', 'orange-04', 'green-01',
+    'green-02', 'green-03', 'green-04';
+
+/* HEX color values*/
+
+$colors_HEX_values: #000, #fff, #eeeeef, #f2fbfe, #eeeeef, #9398a6, #4b4b4b,
+    #1c1c1c, #d7edf4, #6bcfee, #00a8d6, #0089ae, #eba7c9, #db5f9d, #c12273,
+    #8d1954, #f67c5c, #df4d2d, #ae371f, #8f2e1a, #ffd868, #ffb143, #e4902c,
+    #a66921, #7cdf5e, #35bb2d, #2c7e21, #1d5115;
+
+/*font sizes*/
+
+$text-small: 0.7rem;
+$text-tiny: 0.85rem;
+$text-current: 1rem;
+$text-middle: 1.15rem;

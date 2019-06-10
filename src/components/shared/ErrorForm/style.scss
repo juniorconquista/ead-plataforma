@@ -1,0 +1,11 @@
+@import '../../../assets/style/variables.scss';
+
+.error-message {
+    display: flex;
+    justify-content: flex-start;
+    color: $error;
+    letter-spacing: 1px;
+    font-size: 12px;
+    margin-bottom: 15px;
+
+}
