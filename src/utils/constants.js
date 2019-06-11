@@ -1,7 +1,7 @@
-const isProduction = window.location.hostname === 'app.webinar.com';
+const isProduction = window.location.hostname === 'https://tool-for-ead-support.herokuapp.com';
 
 export const BASE_URL = isProduction
-    ? 'https://tool-for-ead-support-api.herokuapp.com/'
+    ? 'https://tool-for-ead-support-api.herokuapp.com'
     : 'http://localhost:9000';
 
 // export const URL_SOCKET_CHAT = isProduction
