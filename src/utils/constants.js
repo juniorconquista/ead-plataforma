@@ -1,4 +1,4 @@
-const isProduction = window.location.hostname === 'https://tool-for-ead-support.herokuapp.com';
+const isProduction = window.location.hostname === 'tool-for-ead-support.herokuapp.com';
 
 export const BASE_URL = isProduction
     ? 'https://tool-for-ead-support-api.herokuapp.com'
