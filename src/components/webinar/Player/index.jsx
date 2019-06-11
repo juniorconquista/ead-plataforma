@@ -7,7 +7,6 @@ import './style.scss';
 
 const Player = () => {
     const { configuration } = useContext(WebinarContentContext);
-    console.log(configuration);
     return (
         <div className="player">
             {configuration.url && !!configuration.url.length ? (

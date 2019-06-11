@@ -18,8 +18,6 @@ const AdminChat = props => {
         setMessage,
     } = props;
 
-    console.log(messagesWaiting);
-
     useEffect(() => {
         getMessages();
         onMessageReceive(messageReceive);
