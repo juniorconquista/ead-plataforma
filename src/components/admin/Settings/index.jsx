@@ -25,7 +25,7 @@ const SettingsSchema = Yup.object().shape({
     ),
 });
 
-const Settings = ({ getConfiguration, settings: { configuration } }) => {
+const Settings = ({ getConfiguration, setConfiguration, settings: { configuration } }) => {
     useEffect(() => {
         getConfiguration();
     }, []);
@@ -36,17 +36,15 @@ const Settings = ({ getConfiguration, settings: { configuration } }) => {
             <Formik
                 initialValues={{
                     ...configuration,
-                    url:
-                        '<iframe width="560" height="315" src="https://www.youtube.com/embed/-JjQalcnvkc" frameborder="0" allow="accele',
-                    date:
-                        moment(configuration.date).format('DD/MM/YYYY HH:mm') ||
-                        '',
+                    date: configuration.date
+                        ? moment(configuration.date).format('DD/MM/YYYY HH:mm')
+                        : undefined,
                 }}
                 validationSchema={SettingsSchema}
-                onSubmit={values => console.log(values)}
+                onSubmit={values => setConfiguration(values)}
                 enableReinitialize
             >
-                {({ errors, touched, values }) => (
+                {({ errors, touched, values, setFieldValue }) => (
                     <Form>
                         <div className="form-box">
                             <div className="group">
@@ -127,8 +125,15 @@ const Settings = ({ getConfiguration, settings: { configuration } }) => {
                                     <div className="custon-checkbox">
                                         <input
                                             {...field}
+                                            id="moderateChat"
                                             type="checkbox"
                                             checked={values.moderateChat}
+                                            onChange={evt =>
+                                                setFieldValue(
+                                                    'moderateChat',
+                                                    evt.target.checked,
+                                                )
+                                            }
                                         />
                                         <label htmlFor="moderateChat">
                                             Moderar chat
@@ -143,7 +148,14 @@ const Settings = ({ getConfiguration, settings: { configuration } }) => {
                                         <input
                                             {...field}
                                             type="checkbox"
+                                            id="inscriptionsClosed"
                                             checked={values.inscriptionsClosed}
+                                            onChange={evt =>
+                                                setFieldValue(
+                                                    'inscriptionsClosed',
+                                                    evt.target.checked,
+                                                )
+                                            }
                                         />
                                         <label htmlFor="inscriptionsClosed">
                                             Encerrar inscrições
@@ -153,7 +165,7 @@ const Settings = ({ getConfiguration, settings: { configuration } }) => {
                             />
                         </div>
                         <div className="form__button">
-                            <Button type="submit" text="Login" />
+                            <Button type="submit" text="Salvar" />
                         </div>
                     </Form>
                 )}
@@ -169,6 +181,8 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
     getConfiguration: payload =>
         dispatch.settings.getConfigurationAsync(payload),
+    setConfiguration: payload =>
+        dispatch.settings.setConfigurationAsync(payload),
 });
 
 export default compose(

@@ -24,8 +24,22 @@ export const settings = {
                 throw e;
             }
         },
+        async setConfigurationAsync(payload, getState) {
+            try {
+                const {
+                    settings: {
+                        configuration: { _id },
+                    },
+                } = getState;
+
+
+                await repository.setConfiguration(_id, payload);
+            } catch (e) {
+                throw e;
+            }
+        },
         clearStores() {
-            dispatch.chat.clearStore();
+            dispatch.configuration.clearStore();
         },
     }),
 };

@@ -15,6 +15,7 @@ import LOGO from '../../assets/icons/logo.svg';
 import imgDefaultUser from '../../assets/images/img_user_default.png';
 
 import './style.scss';
+import { uuidv4 } from '../../utils/constants';
 
 export const WebinarContentContext = React.createContext({});
 
@@ -42,6 +43,7 @@ const Webinar = props => {
     } = props;
 
     useEffect(() => {
+        console.log(uuidv4());
         if (isAdmin) {
             push('/admin');
         }
@@ -67,10 +69,12 @@ const Webinar = props => {
                 date: new Date(),
             });
         }, 1 * MINUTE);
+        
         return () => {
             clearInterval(interval);
             deleteStatus(uuid);
         };
+       
     }, []);
 
     const connect = count => setcount(count);
