@@ -10,8 +10,6 @@ import AdminSettings from './components/admin/Settings';
 import AdminSlide from './components/admin/Slide';
 import AdminStatus from './components/admin/Status';
 
-const component = () => <></>;
-
 export default () => (
     <Switch>
         <Route path="/login" component={Login} />
@@ -20,7 +18,6 @@ export default () => (
             <PrivateRoute path="/webinar" component={Webinar} />
             <MainContainer>
                 <Switch>
-                    <PrivateRoute exact path="/admin" component={component} />
                     <PrivateRoute path="/admin/chat" component={AdminChat} />
                     <PrivateRoute
                         path="/admin/settings"
@@ -34,7 +31,7 @@ export default () => (
                         path="/admin/status"
                         component={AdminStatus}
                     />
-                    <Redirect to="/webinar" />
+                    <Redirect to="/admin/settings" />
                 </Switch>
             </MainContainer>
             <Redirect to="/webinar" />

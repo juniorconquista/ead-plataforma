@@ -24,14 +24,16 @@ export const auth = {
                     accessToken: response.data.uuid,
                 });
             } catch (error) {
-                return handleErrors(error);
+                handleErrors(error);
+                throw new Error(error);
             }
         },
         async registerAsync(payload) {
             try {
                 await repository.register(payload);
             } catch (error) {
-                return handleErrors(error);
+                handleErrors(error);
+                throw new Error(error);
             }
         },
         clearStores() {

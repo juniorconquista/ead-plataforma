@@ -1,17 +1,25 @@
 import React, { memo, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 import PDF from 'react-pdf-js';
 
 import { ReactComponent as IconLeft } from '../../../assets/icons/esquerda.svg';
 import { ReactComponent as IconRight } from '../../../assets/icons/direita.svg';
 
 import Button from '../../shared/Button';
+import ErrorForm from '../../shared/ErrorForm';
 import slideSocket from '../../../containers/socketIo/Slide';
 
 import './style.scss';
 
-const AdminSlide = ({ getSlide, getFiles, slide, io }) => {
+const SlideSchema = Yup.object().shape({
+    slide: Yup.mixed().required('Favor informar o Slide'),
+});
+
+const AdminSlide = ({ getSlide, getFiles, sendSlide, slide, io }) => {
     const [page, setPage] = useState(1);
     const [total, setTotal] = useState(0);
 
@@ -47,28 +55,81 @@ const AdminSlide = ({ getSlide, getFiles, slide, io }) => {
     return (
         <div className="slide__content-admin">
             <h1>Gerenciar slide</h1>
-            <div className="slide__content">
-                <div className="send-slide">
-                    <Button type="submit" text="Enviar slide" />
-                </div>
-                <div className="slide-admin">
-                    <button type="button" onClick={handlePrevious}>
-                        <IconLeft />
-                    </button>
-                    <div className="presentation">
-                        {!!slide.file.length && (
-                            <PDF
-                                file={slide.file}
-                                page={page}
-                                onDocumentComplete={onDocumentComplete}
-                            />
-                        )}
-                    </div>
-                    <button type="button" onClick={handleNext}>
-                        <IconRight />
-                    </button>
-                </div>
-            </div>
+            <Formik
+                validationSchema={SlideSchema}
+                initialValues={{ slide: null }}
+                onSubmit={values =>
+                    sendSlide(values)
+                        .then(() =>
+                            toast.success('Arquivo enviado com sucesso !'),
+                        )
+                        .catch(err => err)
+                }
+                render={({
+                    values,
+                    handleSubmit,
+                    setFieldValue,
+                    errors,
+                    touched,
+                }) => {
+                    return (
+                        <div className="slide__content">
+                            <form onSubmit={handleSubmit}>
+                                <div className="send-slide">
+                                    <div className="upload-btn-wrapper">
+                                        <button class="btn">
+                                            {values.slide
+                                                ? values.slide.name
+                                                : 'Upload do arquivo'}
+                                        </button>
+                                        <input
+                                            id="file"
+                                            name="slide"
+                                            type="file"
+                                            onChange={event => {
+                                                setFieldValue(
+                                                    'slide',
+                                                    event.currentTarget
+                                                        .files[0],
+                                                );
+                                            }}
+                                            className="form-control"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="slide-admin">
+                                    <button
+                                        type="button"
+                                        onClick={handlePrevious}
+                                    >
+                                        <IconLeft />
+                                    </button>
+                                    <div className="presentation">
+                                        {!!slide.file.length && (
+                                            <PDF
+                                                file={slide.file}
+                                                page={page}
+                                                onDocumentComplete={
+                                                    onDocumentComplete
+                                                }
+                                            />
+                                        )}
+                                    </div>
+                                    <button type="button" onClick={handleNext}>
+                                        <IconRight />
+                                    </button>
+                                </div>
+                                <div className="action-slide">
+                                    <Button type="submit" text="Enviar slide" />
+                                    {errors.slide && touched.slide ? (
+                                        <ErrorForm message={errors.slide} />
+                                    ) : null}
+                                </div>
+                            </form>
+                        </div>
+                    );
+                }}
+            />
         </div>
     );
 };
@@ -80,6 +141,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
     getSlide: payload => dispatch.slide.getSlideAsync(payload),
     getFiles: payload => dispatch.slide.getFilesAsync(payload),
+    sendSlide: payload => dispatch.slide.sendSlideAsync(payload),
 });
 
 export default compose(

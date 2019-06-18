@@ -40,7 +40,13 @@ const closeAll = () => {
 };
 
 const connect = (baseUrl, path) => {
-    const socket = io.connect(baseUrl, { path });
+    const socket = io.connect(baseUrl, {
+        path,
+        reconnection: true,
+        reconnectionDelay: 10000,
+        reconnectionDelayMax: 50000,
+        reconnectionAttempts: 5,
+    });
     sockets[path] = socket;
     return socket;
 };

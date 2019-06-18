@@ -1,4 +1,5 @@
 import * as repository from './repository';
+import handleErrors from '../../utils/handle-errors';
 
 export const settings = {
     state: {
@@ -20,8 +21,9 @@ export const settings = {
             try {
                 const response = await repository.getConfiguration();
                 return dispatch.settings.configuration(response.data);
-            } catch (e) {
-                throw e;
+            } catch (error) {
+                handleErrors(error);
+                throw new Error(error);
             }
         },
         async setConfigurationAsync(payload, getState) {
@@ -31,11 +33,10 @@ export const settings = {
                         configuration: { _id },
                     },
                 } = getState;
-
-
                 await repository.setConfiguration(_id, payload);
-            } catch (e) {
-                throw e;
+            } catch (error) {
+                handleErrors(error);
+                throw new Error(error);
             }
         },
         clearStores() {

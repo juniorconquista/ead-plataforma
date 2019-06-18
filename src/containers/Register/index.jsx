@@ -9,14 +9,14 @@ import { ReactComponent as IconUser } from '../../assets/icons/user.svg';
 import { ReactComponent as IconPassword } from '../../assets/icons/password.svg';
 import { ReactComponent as IconEmail } from '../../assets/icons/send.svg';
 
-import Loading from '../../components/shared/Loading';
 import ErrorForm from '../../components/shared/ErrorForm';
 import InputGroup from '../../components/shared/InputGroup';
 import Button from '../../components/shared/Button';
 
 import LOGO from '../../assets/icons/logo.svg';
-import './style.scss';
 import { uuidv4 } from '../../utils/constants';
+
+import './style.scss';
 
 const RergisterSchema = Yup.object().shape({
     name: Yup.string().required('Favor inválido o sue NOME'),
@@ -32,7 +32,7 @@ const RergisterSchema = Yup.object().shape({
         ),
 });
 
-const Register = ({ register, loading, history: { push } }) => (
+const Register = ({ register, history: { push } }) => (
     <>
         <div className="register-page">
             <div className="register-page__form">
@@ -131,21 +131,11 @@ const Register = ({ register, loading, history: { push } }) => (
                 </Formik>
             </div>
         </div>
-        {loading && <Loading />}
     </>
 );
-
-const mapState = state => ({
-    loading: state.loading.effects.auth.registerAsync,
-});
 
 const mapDispatch = dispatch => ({
     register: payload => dispatch.auth.registerAsync(payload),
 });
 
-export default withRouter(
-    connect(
-        mapState,
-        mapDispatch,
-    )(memo(Register)),
-);
+export default withRouter(connect(mapDispatch)(memo(Register)));

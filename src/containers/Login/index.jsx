@@ -8,7 +8,6 @@ import * as Yup from 'yup';
 import { ReactComponent as IconUser } from '../../assets/icons/user.svg';
 import { ReactComponent as IconPassword } from '../../assets/icons/password.svg';
 
-import Loading from '../../components/shared/Loading';
 import ErrorForm from '../../components/shared/ErrorForm';
 import InputGroup from '../../components/shared/InputGroup';
 import Button from '../../components/shared/Button';
@@ -23,7 +22,7 @@ const SignupSchema = Yup.object().shape({
     password: Yup.string().required('Favor informar a sua SENHA'),
 });
 
-const Login = ({ login, loading, history: { push } }) => (
+const Login = ({ login, history: { push } }) => (
     <>
         <div className="login-page">
             <div className="login-page__form">
@@ -85,21 +84,11 @@ const Login = ({ login, loading, history: { push } }) => (
                 </Formik>
             </div>
         </div>
-        {loading && <Loading />}
     </>
 );
-
-const mapState = state => ({
-    loading: state.loading.effects.auth.loginAsync,
-});
 
 const mapDispatch = dispatch => ({
     login: payload => dispatch.auth.loginAsync(payload),
 });
 
-export default withRouter(
-    connect(
-        mapState,
-        mapDispatch,
-    )(memo(Login)),
-);
+export default withRouter(connect(mapDispatch)(memo(Login)));
