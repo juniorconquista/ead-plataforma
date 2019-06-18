@@ -128,12 +128,6 @@ const Webinar = props => {
                     </div>
                 </div>
                 <div className="menu-mobile">
-                    {/* <button>
-                        <IconUser />
-                    </button>
-                    <button>
-                        <IconNotification />
-                    </button> */}
                     <button
                         onClick={() => setTab('chat')}
                         className={classnames({

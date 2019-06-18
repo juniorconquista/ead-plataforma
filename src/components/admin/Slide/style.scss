@@ -36,16 +36,19 @@
                 height: 300px;
                 border-radius: 3px;
                 margin: 0px 15px;
-                background-image: url('../../../assets/images/portugues.jpg');
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: cover;
+                canvas {
+                    width: 100%;
+                }
                 @media (max-width: 375px) {
                     margin: 0px 5px;
                 }
             }
-            svg {
-                height: 30px;
+            button {
+                background-color: transparent;
+                border: none;
+                svg {
+                    height: 30px;
+                }
             }
         }
     }
