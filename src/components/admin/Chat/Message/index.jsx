@@ -13,7 +13,7 @@ import './style.scss';
 const Message = ({ message, statusMessage }) => (
     <div
         className={classnames({
-            'chat__content-admin': true,
+            'chat__content-message-admin': true,
         })}
     >
         <div className="box-message">
