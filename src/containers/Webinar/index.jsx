@@ -69,7 +69,7 @@ const Webinar = props => {
         };
     }, []);
 
-    const [tab, setTab] = useState('slide'); // slide
+    const [tab, setTab] = useState('chat'); // slide
     const connect = count => setcount(count);
     const messageReceive = message => setMessageReceived([message]);
     const messageUpdate = () => getMessages();
