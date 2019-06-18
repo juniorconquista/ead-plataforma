@@ -9,6 +9,7 @@ import { ReactComponent as IconUser } from '../../assets/icons/user.svg';
 import { ReactComponent as IconPassword } from '../../assets/icons/password.svg';
 import { ReactComponent as IconEmail } from '../../assets/icons/send.svg';
 
+import Loading from '../../components/shared/Loading';
 import ErrorForm from '../../components/shared/ErrorForm';
 import InputGroup from '../../components/shared/InputGroup';
 import Button from '../../components/shared/Button';
@@ -31,103 +32,111 @@ const RergisterSchema = Yup.object().shape({
         ),
 });
 
-const Register = ({ register, history: { push } }) => (
-    <div className="register-page">
-        <div className="register-page__form">
-            <div className="form__logo">
-                <img src={LOGO} alt="education" />
+const Register = ({ register, loading, history: { push } }) => (
+    <>
+        <div className="register-page">
+            <div className="register-page__form">
+                <div className="form__logo">
+                    <img src={LOGO} alt="education" />
+                </div>
+                <Formik
+                    initialValues={{
+                        name: '',
+                        email: '',
+                        password: '',
+                        confirmPassword: '',
+                    }}
+                    validationSchema={RergisterSchema}
+                    onSubmit={values =>
+                        register({ ...values, uuid: uuidv4() })
+                            .then(() => {
+                                toast.success(
+                                    'Cadastro realizado com sucesso !',
+                                );
+                                push('/webinar');
+                            })
+                            .catch(err => err)
+                    }
+                >
+                    {({ errors, touched }) => (
+                        <Form>
+                            <Field
+                                type="text"
+                                name="name"
+                                render={({ field }) => (
+                                    <InputGroup
+                                        {...field}
+                                        Icon={IconUser}
+                                        autoComplete="current-name"
+                                        placeholder="Nome"
+                                    />
+                                )}
+                            />
+                            {errors.name && touched.name ? (
+                                <ErrorForm message={errors.name} />
+                            ) : null}
+                            <Field
+                                type="text"
+                                name="email"
+                                render={({ field }) => (
+                                    <InputGroup
+                                        {...field}
+                                        Icon={IconEmail}
+                                        autoComplete="current-email"
+                                        placeholder="E-mail"
+                                    />
+                                )}
+                            />
+                            {errors.email && touched.email ? (
+                                <ErrorForm message={errors.email} />
+                            ) : null}
+                            <Field
+                                type="password"
+                                name="password"
+                                render={({ field }) => (
+                                    <InputGroup
+                                        {...field}
+                                        Icon={IconPassword}
+                                        autoComplete="current-password"
+                                        type="password"
+                                        placeholder="Senha"
+                                    />
+                                )}
+                            />
+                            {errors.password && touched.password ? (
+                                <ErrorForm message={errors.password} />
+                            ) : null}
+                            <Field
+                                type="password"
+                                name="confirmPassword"
+                                render={({ field }) => (
+                                    <InputGroup
+                                        {...field}
+                                        Icon={IconPassword}
+                                        autoComplete="current-password-confirmation"
+                                        type="password"
+                                        placeholder="Redigite a senha"
+                                    />
+                                )}
+                            />
+                            {errors.confirmPassword &&
+                            touched.confirmPassword ? (
+                                <ErrorForm message={errors.confirmPassword} />
+                            ) : null}
+                            <div className="form__button">
+                                <Button type="submit" text="Cadastre-se" />
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
             </div>
-            <Formik
-                initialValues={{
-                    name: '',
-                    email: '',
-                    password: '',
-                    confirmPassword: '',
-                }}
-                validationSchema={RergisterSchema}
-                onSubmit={values =>
-                    register({ ...values, uuid: uuidv4() }).then(() => {
-                        toast.success('Cadastro realizado com sucesso !');
-                        push('/webinar');
-                    })
-                }
-            >
-                {({ errors, touched }) => (
-                    <Form>
-                        <Field
-                            type="text"
-                            name="name"
-                            render={({ field }) => (
-                                <InputGroup
-                                    {...field}
-                                    Icon={IconUser}
-                                    autoComplete="current-name"
-                                    placeholder="Nome"
-                                />
-                            )}
-                        />
-                        {errors.name && touched.name ? (
-                            <ErrorForm message={errors.name} />
-                        ) : null}
-                        <Field
-                            type="text"
-                            name="email"
-                            render={({ field }) => (
-                                <InputGroup
-                                    {...field}
-                                    Icon={IconEmail}
-                                    autoComplete="current-email"
-                                    placeholder="E-mail"
-                                />
-                            )}
-                        />
-                        {errors.email && touched.email ? (
-                            <ErrorForm message={errors.email} />
-                        ) : null}
-                        <Field
-                            type="password"
-                            name="password"
-                            render={({ field }) => (
-                                <InputGroup
-                                    {...field}
-                                    Icon={IconPassword}
-                                    autoComplete="current-password"
-                                    type="password"
-                                    placeholder="Senha"
-                                />
-                            )}
-                        />
-                        {errors.password && touched.password ? (
-                            <ErrorForm message={errors.password} />
-                        ) : null}
-                        <Field
-                            type="password"
-                            name="confirmPassword"
-                            render={({ field }) => (
-                                <InputGroup
-                                    {...field}
-                                    Icon={IconPassword}
-                                    autoComplete="current-password-confirmation"
-                                    type="password"
-                                    placeholder="Redigite a senha"
-                                />
-                            )}
-                        />
-                        {errors.confirmPassword && touched.confirmPassword ? (
-                            <ErrorForm message={errors.confirmPassword} />
-                        ) : null}
-                        <div className="form__button">
-                            <Button type="submit" text="Cadastre-se" />
-                        </div>
-                    </Form>
-                )}
-            </Formik>
         </div>
-    </div>
+        {loading && <Loading />}
+    </>
 );
 
 const mapState = state => ({
-    loading: state.loading.effects.auth.login,
+    loading: state.loading.effects.auth.registerAsync,
 });
 
 const mapDispatch = dispatch => ({

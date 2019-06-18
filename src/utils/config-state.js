@@ -3,7 +3,7 @@ import createRematchPersist from '@rematch/persist';
 import storageSession from 'redux-persist/lib/storage/session';
 
 export const loading = createLoadingPlugin({
-    whitelist: ['auth/login'],
+    whitelist: ['auth/loginAsync', 'auth/registerAsync'],
 });
 
 export const persistPlugin = createRematchPersist({

@@ -13,8 +13,7 @@ import './style.scss';
 const Message = ({ message, statusMessage }) => (
     <div
         className={classnames({
-            chat__message: true,
-            // 'await-approved': message.status !== 'approved',
+            'chat__content-admin': true,
         })}
     >
         <div className="box-message">

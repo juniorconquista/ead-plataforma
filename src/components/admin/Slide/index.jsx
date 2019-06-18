@@ -13,7 +13,7 @@ const AdminSlide = () => (
             <div className="send-slide">
                 <Button type="submit" text="Enviar slide" />
             </div>
-            <div className="slide">
+            <div className="slide-admin">
                 <IconLeft />
                 <div className="presentation" />
                 <IconRight />

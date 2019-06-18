@@ -1,4 +1,5 @@
 import * as repository from './repository';
+import handleErrors from '../../utils/handle-errors';
 
 export const auth = {
     state: {},
@@ -22,15 +23,15 @@ export const auth = {
                     ...response.data,
                     accessToken: response.data.uuid,
                 });
-            } catch (e) {
-                throw e;
+            } catch (error) {
+                return handleErrors(error);
             }
         },
         async registerAsync(payload) {
             try {
                 await repository.register(payload);
-            } catch (e) {
-                throw e;
+            } catch (error) {
+                return handleErrors(error);
             }
         },
         clearStores() {

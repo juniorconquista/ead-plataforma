@@ -1,15 +1,16 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
 
 import Player from '../../components/webinar/Player';
 import Chat from '../../components/webinar/Chat';
+import Slide from '../../components/webinar/Slide';
 import chatSocket from '../socketIo/Chat';
 
 import { ReactComponent as IconMessages } from '../../assets/icons/mensagens.svg';
 import { ReactComponent as IconPresentation } from '../../assets/icons/apresentacao.svg';
 import { ReactComponent as IconNotification } from '../../assets/icons/sino.svg';
-import { ReactComponent as IconUser } from '../../assets/icons/user.svg';
 
 import LOGO from '../../assets/icons/logo.svg';
 import imgDefaultUser from '../../assets/images/img_user_default.png';
@@ -52,13 +53,7 @@ const Webinar = props => {
         onMessageReceive(messageReceive);
         registerOnMessageReceive();
         onMessageUpdateReceive(messageUpdate);
-        registerOnMessageUpdateReceive();
-        setStatus({
-            uuid,
-            name,
-            isAdmin,
-            date: new Date(),
-        });
+        registerOnMessageUpdateReceive();  
         const interval = setInterval(() => {
             setStatus({
                 uuid,
@@ -67,14 +62,14 @@ const Webinar = props => {
                 date: new Date(),
             });
         }, 1 * MINUTE);
-        
+
         return () => {
             clearInterval(interval);
             deleteStatus(uuid);
         };
-       
     }, []);
 
+    const [tab, setTab] = useState('slide'); // slide
     const connect = count => setcount(count);
     const messageReceive = message => setMessageReceived([message]);
     const messageUpdate = () => getMessages();
@@ -111,29 +106,49 @@ const Webinar = props => {
                 <div className="content">
                     <div className="box">
                         <Player />
-                        <Chat />
+                        {tab === 'chat' ? <Chat /> : <Slide />}
                         <div className="tabs">
-                            <button className="active">
+                            <button
+                                onClick={() => setTab('chat')}
+                                className={classnames({
+                                    active: tab === 'chat',
+                                })}
+                            >
                                 <IconMessages />
                             </button>
-                            <button>
+                            <button
+                                onClick={() => setTab('slide')}
+                                className={classnames({
+                                    active: tab === 'slide',
+                                })}
+                            >
                                 <IconPresentation />
                             </button>
                         </div>
                     </div>
                 </div>
                 <div className="menu-mobile">
-                    <button>
+                    {/* <button>
                         <IconUser />
-                    </button>
-                    <button className="active">
-                        <IconMessages />
-                    </button>
-                    <button>
-                        <IconPresentation />
                     </button>
                     <button>
                         <IconNotification />
+                    </button> */}
+                    <button
+                        onClick={() => setTab('chat')}
+                        className={classnames({
+                            active: tab === 'chat',
+                        })}
+                    >
+                        <IconMessages />
+                    </button>
+                    <button
+                        onClick={() => setTab('slide')}
+                        className={classnames({
+                            active: tab === 'slide',
+                        })}
+                    >
+                        <IconPresentation />
                     </button>
                 </div>
             </div>

@@ -7,13 +7,11 @@ import { ReactComponent as IconPresentation } from '../../assets/icons/slide.svg
 import { ReactComponent as IconMessages } from '../../assets/icons/chat.svg';
 import { ReactComponent as IconStatus } from '../../assets/icons/status.svg';
 import { ReactComponent as IconSettings } from '../../assets/icons/geral.svg';
-import { ReactComponent as IconUser } from '../../assets/icons/user.svg';
 
 import { ReactComponent as LOGO } from '../../assets/icons/logo-admin.svg';
 import imgDefaultUser from '../../assets/images/img_user_default.png';
 
 import './style.scss';
-
 
 export const MainContentContext = React.createContext({});
 
@@ -103,21 +101,45 @@ const Main = props => {
                     <div className="app">{children}</div>
                 </div>
                 <div className="menu-mobile">
-                    <button>
+                    {/* <button>
                         <IconUser />
-                    </button>
-                    <button>
+                    </button> */}
+                    <Link
+                        className={`menu-item ${activeClass(
+                            pathname,
+                            '/admin/settings',
+                        )}`}
+                        to="/admin/settings"
+                    >
                         <IconSettings />
-                    </button>
-                    <button>
+                    </Link>
+                    <Link
+                        className={`menu-item ${activeClass(
+                            pathname,
+                            '/admin/slide',
+                        )}`}
+                        to="/admin/slide"
+                    >
                         <IconPresentation />
-                    </button>
-                    <button className="active">
+                    </Link>
+                    <Link
+                        className={`menu-item ${activeClass(
+                            pathname,
+                            '/admin/chat',
+                        )}`}
+                        to="/admin/chat"
+                    >
                         <IconMessages />
-                    </button>
-                    <button>
+                    </Link>
+                    <Link
+                        className={`menu-item ${activeClass(
+                            pathname,
+                            '/admin/status',
+                        )}`}
+                        to="/admin/status"
+                    >
                         <IconStatus />
-                    </button>
+                    </Link>
                 </div>
             </div>
         </MainContentContext.Provider>
