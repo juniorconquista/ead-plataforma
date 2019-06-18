@@ -29,8 +29,7 @@ export const slide = {
                 const response = await repository.getFiles(payload);
                 return dispatch.slide.file(URL.createObjectURL(response.data));
             } catch (error) {
-                handleErrors(error);
-                throw new Error(error);
+                return handleErrors(error);
             }
         },
         async sendSlideAsync(payload) {
@@ -48,8 +47,7 @@ export const slide = {
                 const response = await repository.getSlide();
                 return dispatch.slide.path(response.data);
             } catch (error) {
-                handleErrors(error);
-                throw new Error(error);
+                return handleErrors(error);
             }
         },
         clearStores() {

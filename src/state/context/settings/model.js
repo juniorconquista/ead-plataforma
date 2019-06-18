@@ -22,8 +22,7 @@ export const settings = {
                 const response = await repository.getConfiguration();
                 return dispatch.settings.configuration(response.data);
             } catch (error) {
-                handleErrors(error);
-                throw new Error(error);
+                return handleErrors(error);
             }
         },
         async setConfigurationAsync(payload, getState) {

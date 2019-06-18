@@ -36,12 +36,10 @@ const Slide = ({
     };
 
     const handlePrevious = page => {
-        console.log('handlePrevious', page);
         setPage(page);
     };
 
     const handleNext = page => {
-        console.log('handleNext', page);
         setPage(page);
     };
 
