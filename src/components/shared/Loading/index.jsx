@@ -23,6 +23,4 @@ const mapState = state => ({
         state.loading.effects.slide.sendSlideAsync || state.loading.effects.status.getUsersAsync,
 });
 
-
-
 export default connect(mapState)(memo(Loading));

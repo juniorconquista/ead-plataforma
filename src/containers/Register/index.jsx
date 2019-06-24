@@ -138,4 +138,9 @@ const mapDispatch = dispatch => ({
     register: payload => dispatch.auth.registerAsync(payload),
 });
 
-export default withRouter(connect(mapDispatch)(memo(Register)));
+export default withRouter(
+    connect(
+        null,
+        mapDispatch,
+    )(memo(Register)),
+);

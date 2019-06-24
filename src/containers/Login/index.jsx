@@ -91,4 +91,9 @@ const mapDispatch = dispatch => ({
     login: payload => dispatch.auth.loginAsync(payload),
 });
 
-export default withRouter(connect(mapDispatch)(memo(Login)));
+export default withRouter(
+    connect(
+        null,
+        mapDispatch,
+    )(memo(Login)),
+);
