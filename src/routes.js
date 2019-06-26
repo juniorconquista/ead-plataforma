@@ -39,3 +39,4 @@ export default () => (
         <Redirect to="/login" />
     </Switch>
 );
+
